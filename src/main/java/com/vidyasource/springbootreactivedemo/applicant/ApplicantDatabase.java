@@ -16,7 +16,6 @@ public class ApplicantDatabase {
     }
 
     public Flux<AdoptionApplicant> findApplicantsButError() {
-        var faker = new Faker();
         return Flux.concat(
                 Flux.just(new AdoptionApplicant(1, faker.name().fullName())),
                 Flux.just(new AdoptionApplicant(2, faker.name().fullName())),
