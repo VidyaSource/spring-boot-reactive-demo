@@ -32,7 +32,9 @@ public class DemoController {
 
         return client
                 .get()
-                .uri(uriBuilder -> uriBuilder.path("/v2/pet/findByStatus").queryParam("status", "available").build())
+                .uri(uriBuilder -> uriBuilder.path("/v2/pet/findByStatus")
+                        .queryParam("status", "available")
+                        .build())
                 .retrieve()
                 .bodyToFlux(new ParameterizedTypeReference<>() {});
     }
@@ -49,12 +51,14 @@ public class DemoController {
         ApplicantDatabase db = new ApplicantDatabase();
 
         // In real life if you are pulling from a DB, you would use your DB to filter, but this filters the REST response
-        return db.findALl().zipWith(getPets().filter(p -> p.name().equals("doggie")), (applicant, pet) -> new Adoption(applicant.name(), pet));
+        return db.findALl()
+                .zipWith(getPets()
+                .filter(p -> p.name().equals("doggie")), (applicant, pet) -> new Adoption(applicant.name(), pet));
     }
 
 
     @GetMapping(value = "/demo/errors/return")
-    public Flux<AdoptionApplicant> getApplicantsWithError() {
+    public Flux<AdoptionApplicant> getApplicantsWithErrorReturn() {
         ApplicantDatabase db = new ApplicantDatabase();
 
         return db.findApplicantsButError()
@@ -64,7 +68,7 @@ public class DemoController {
     }
 
     @GetMapping(value = "/demo/errors/resume")
-    public Mono<ResponseEntity<List<AdoptionApplicant>>> getApplicantsWithError2() {
+    public Mono<ResponseEntity<List<AdoptionApplicant>>> getApplicantsWithErrorResume() {
         ApplicantDatabase db = new ApplicantDatabase();
 
         return db
