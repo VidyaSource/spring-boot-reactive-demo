@@ -21,12 +21,6 @@ dependencies {
     testImplementation 'io.projectreactor:reactor-test'
 }
 
-dependencyManagement {
-    imports {
-        mavenBom "org.testcontainers:testcontainers-bom:${testcontainersVersion}"
-    }
-}
-
 tasks.named('test') {
     useJUnitPlatform()
 }
