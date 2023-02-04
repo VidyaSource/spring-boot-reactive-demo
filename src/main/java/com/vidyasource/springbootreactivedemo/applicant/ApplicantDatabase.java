@@ -12,7 +12,7 @@ public class ApplicantDatabase {
     public Flux<AdoptionApplicant> findAll() {
         return Flux
                 .range(1, 20)
-                .map(i -> new AdoptionApplicant(i, faker.name().fullName()));
+                .map(id -> new AdoptionApplicant(id, faker.name().fullName()));
     }
 
     public Flux<AdoptionApplicant> findApplicantsButError() {
