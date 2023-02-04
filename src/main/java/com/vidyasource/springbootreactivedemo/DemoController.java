@@ -43,7 +43,9 @@ public class DemoController {
     public Flux<Adoption> getAdoptions() {
         ApplicantDatabase db = new ApplicantDatabase();
 
-        return db.findAll().zipWith(getPets(), (applicant, pet) -> new Adoption(applicant.name(), pet));
+        return db
+                .findAll()
+                .zipWith(getPets(), (applicant, pet) -> new Adoption(applicant.name(), pet));
     }
 
     @GetMapping(value = "/demo/adoptions/dogs")
