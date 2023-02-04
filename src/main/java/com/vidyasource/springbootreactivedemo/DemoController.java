@@ -43,7 +43,7 @@ public class DemoController {
     public Flux<Adoption> getAdoptions() {
         ApplicantDatabase db = new ApplicantDatabase();
 
-        return db.findALl().zipWith(getPets(), (applicant, pet) -> new Adoption(applicant.name(), pet));
+        return db.findAll().zipWith(getPets(), (applicant, pet) -> new Adoption(applicant.name(), pet));
     }
 
     @GetMapping(value = "/demo/adoptions/dogs")
@@ -51,7 +51,7 @@ public class DemoController {
         ApplicantDatabase db = new ApplicantDatabase();
 
         // In real life if you are pulling from a DB, you would use your DB to filter, but this filters the REST response
-        return db.findALl()
+        return db.findAll()
                 .zipWith(getPets()
                 .filter(p -> p.name().equals("doggie")), (applicant, pet) -> new Adoption(applicant.name(), pet));
     }

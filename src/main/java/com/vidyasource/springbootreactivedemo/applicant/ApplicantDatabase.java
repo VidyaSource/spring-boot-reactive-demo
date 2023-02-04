@@ -9,7 +9,7 @@ public class ApplicantDatabase {
         faker = new Faker();
     }
 
-    public Flux<AdoptionApplicant> findALl() {
+    public Flux<AdoptionApplicant> findAll() {
         return Flux
                 .range(1, 20)
                 .map(i -> new AdoptionApplicant(i, faker.name().fullName()));
