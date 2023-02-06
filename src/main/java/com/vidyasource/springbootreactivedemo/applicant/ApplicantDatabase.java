@@ -19,7 +19,7 @@ public class ApplicantDatabase {
         return Flux.concat(
                 Flux.just(new AdoptionApplicant(1, faker.name().fullName())),
                 Flux.just(new AdoptionApplicant(2, faker.name().fullName())),
-                Flux.error(new Exception(("There was an error"))),
+                Flux.error(new RuntimeException(("There was an error"))),
                 Flux.just(new AdoptionApplicant(4, faker.name().fullName()))
         );
     }
